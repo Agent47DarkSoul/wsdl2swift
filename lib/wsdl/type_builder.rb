@@ -11,12 +11,19 @@ module WSDL
     end
 
     def build
-      Type.new(@node.attribute('name').value, attribute_nodes)
+      Type.new(node_name, attribute_nodes)
     end
+
+    private
 
     def attribute_nodes
       nodes = @node.xpath('xsd:sequence/xsd:element')
       nodes.map { |node| PropertyBuilder.new(node).build }
+    end
+
+    def node_name
+      attribute = @node.attribute('name') || @node.parent.attribute('name')
+      attribute.value
     end
   end
 end

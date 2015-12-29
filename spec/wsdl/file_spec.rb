@@ -11,7 +11,7 @@ module WSDL
         type_names = types.map(&:name)
         expect(type_names).to match_array([
           'AuthenticationRealm', 'AuthenticateOperationBody', 'OperationRealm',
-          'OperationError', 'AuthenticateOperationResponseBody'])
+          'OperationError', 'AuthenticateOperationResponseBody', 'AuthenticateOperation'])
       end
 
       it 'returns properties for types' do

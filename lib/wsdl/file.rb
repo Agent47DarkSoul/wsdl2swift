@@ -10,7 +10,7 @@ module WSDL
     end
 
     def types
-      complex_type_nodes = @xml.xpath("//wsdl:types/xsd:schema/xsd:complexType")
+      complex_type_nodes = @xml.xpath("//wsdl:types/xsd:schema//xsd:complexType")
 
       complex_type_nodes.map do |node|
         TypeBuilder.new(node).build
