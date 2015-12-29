@@ -17,20 +17,6 @@ module WSDL
           expect(subject.type).to eq('string')
           expect(subject.tokenized_type).to eq('String')
         end
-
-        context 'when property is nillable' do
-          it 'is optional' do
-            expect(subject.optional?).to be(true)
-          end
-        end
-
-        context 'when property is not nillable' do
-          let(:content) { '<element name="SourceID" type="xsd:string"/>' }
-
-          it 'is not optional' do
-            expect(subject.optional?).to be(false)
-          end
-        end
       end
 
       context 'without element node' do

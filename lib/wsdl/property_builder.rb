@@ -1,16 +1,6 @@
+require_relative 'property'
+
 module WSDL
-  class Property < Struct.new(:type, :name, :nillable);
-    include Inflections
-
-    def tokenized_type
-      classify(type)
-    end
-
-    def optional?
-      nillable == 'true'
-    end
-  end
-
   class PropertyBuilder
     def initialize(node)
       raise ArgumentError, 'Invalid node' unless node.name == 'element'
