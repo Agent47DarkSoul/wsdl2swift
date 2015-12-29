@@ -6,7 +6,7 @@ module WSDL
       subject { builder.build }
 
       context 'with element node' do
-        let(:content) { '<element name="SourceID" nillable="true" type="xsd:string"/>' }
+        let(:content) { '<element name="SourceID" maxOccurs="unbounded" minOccurs="0" nillable="true" type="xsd:string"/>' }
         let(:node) { Nokogiri::XML(content).children.first }
 
         it 'creates Property with correct name' do
@@ -15,6 +15,14 @@ module WSDL
 
         it 'creates Property with correct type' do
           expect(subject.type).to eq('string')
+        end
+
+        it 'creates Property with correct optional value' do
+          expect(subject).to be_optional
+        end
+
+        it 'creates multivalued Property' do
+          expect(subject).to be_multivalued
         end
       end
 

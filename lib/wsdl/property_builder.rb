@@ -9,7 +9,7 @@ module WSDL
     end
 
     def build
-      Property.new(node_type, node_name, node_nillable)
+      Property.new(node_type, node_name, node_nillable, max_occurance)
     end
 
     private
@@ -24,6 +24,11 @@ module WSDL
 
     def node_nillable
       attribute = @node.attribute('nillable')
+      attribute && attribute.value
+    end
+
+    def max_occurance
+      attribute = @node.attribute('maxOccurs')
       attribute && attribute.value
     end
   end
