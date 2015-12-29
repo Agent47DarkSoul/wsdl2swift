@@ -1,9 +1,13 @@
 module WSDL
-  class Property < Struct.new(:type, :name, :optional);
+  class Property < Struct.new(:type, :name, :nillable);
     include Inflections
 
     def tokenized_type
       classify(type)
+    end
+
+    def optional?
+      nillable == 'true'
     end
   end
 
@@ -15,7 +19,7 @@ module WSDL
     end
 
     def build
-      Property.new(node_type, node_name, node_optional?)
+      Property.new(node_type, node_name, node_nillable)
     end
 
     private
@@ -28,9 +32,9 @@ module WSDL
       @node.attribute('name').value
     end
 
-    def node_optional?
+    def node_nillable
       attribute = @node.attribute('nillable')
-      attribute && eval(attribute.value)
+      attribute && attribute.value
     end
   end
 end

@@ -6,15 +6,30 @@ module WSDL
       subject { builder.build }
 
       context 'with element node' do
-        let(:node) { Nokogiri::XML('<element name="SourceID" nillable="true" type="xsd:string"/>').children.first }
+        let(:content) { '<element name="SourceID" nillable="true" type="xsd:string"/>' }
+        let(:node) { Nokogiri::XML(content).children.first }
 
         it 'creates Property with correct name' do
           expect(subject.name).to eq('SourceID')
         end
 
-        it 'createsProperty with correct type' do
+        it 'creates Property with correct type' do
           expect(subject.type).to eq('string')
           expect(subject.tokenized_type).to eq('String')
+        end
+
+        context 'when property is nillable' do
+          it 'is optional' do
+            expect(subject.optional?).to be(true)
+          end
+        end
+
+        context 'when property is not nillable' do
+          let(:content) { '<element name="SourceID" type="xsd:string"/>' }
+
+          it 'is not optional' do
+            expect(subject.optional?).to be(false)
+          end
         end
       end
 
