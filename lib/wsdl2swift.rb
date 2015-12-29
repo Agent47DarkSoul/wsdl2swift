@@ -1,0 +1,2 @@
+module Wsdl2swift
+end
