@@ -15,7 +15,6 @@ module WSDL
 
         it 'creates Property with correct type' do
           expect(subject.type).to eq('string')
-          expect(subject.tokenized_type).to eq('String')
         end
       end
 

@@ -17,5 +17,13 @@ module WSDL
         it('returns false') { expect(subject).to be(false) }
       end
     end
+
+    describe '#tokenized_type' do
+      subject { property.tokenized_type }
+
+      it 'returns type in tokenized form of language' do
+        expect(subject).to eq('String')
+      end
+    end
   end
 end
