@@ -1,3 +1,4 @@
+require 'wsdl'
 require 'wsdl/file'
 
 begin
