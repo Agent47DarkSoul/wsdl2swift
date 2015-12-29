@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'commander/import'
+require 'wsdl2swift'
+
+program :version, '0.0.1'
+program :description, 'Swift classes generator from WSDL documents.'
+
+command :generate do |c|
+  c.syntax = 'wsdl2swift generate URL [options]'
+  c.summary = 'Generate Swift classes from WSDL'
+  c.description = 'Generates Swift classes based upon a WSDL file. URL can be web url or local disk path.'
+
+  c.example 'With URL as web url', 'wsdl2swift generate http://www.webservicex.net/globalweather.asmx?WSDL'
+  c.example 'With URL as local path', 'wsdl2swift generate ./globalweather.wsdl'
+
+  c.option '--output-path', 'Path to directory where Swift class files will be generated.'
+  c.action do |args, options|
+    # Do something or c.when_called Wsdl2swift::Commands::Generate
+    options.default :out => nil
+
+    if args.size == 1
+      # Perform operation
+      say("Generating swift files...")
+    elsif args.size < 1
+      say("Failed: URL must be provided. Use --help for usage")
+    else
+      say("Failed: Please provide only one url or path")
+    end
+  end
+end
+
+default_command :generate
