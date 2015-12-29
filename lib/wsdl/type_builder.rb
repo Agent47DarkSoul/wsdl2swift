@@ -1,8 +1,7 @@
+require_relative 'type'
 require_relative 'property_builder'
 
 module WSDL
-  class Type < Struct.new(:name, :properties); end
-
   class TypeBuilder
     def initialize(node)
       raise ArgumentError, 'Invalid node' unless node.name == 'complexType'
