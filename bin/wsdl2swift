@@ -3,8 +3,9 @@
 require 'rubygems'
 require 'commander/import'
 require 'wsdl2swift'
+require 'wsdl/version'
 
-program :version, '0.0.1'
+program :version, WSDL::VERSION
 program :description, 'Swift classes generator from WSDL documents.'
 
 command :generate do |c|
