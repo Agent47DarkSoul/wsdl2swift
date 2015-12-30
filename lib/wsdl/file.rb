@@ -12,7 +12,7 @@ module WSDL
 
     def types
       XML::Document.new(@doc).type_nodes.map do |node|
-        TypeBuilder.new(node).build
+        TypeBuilder.build(node)
       end
     end
   end
