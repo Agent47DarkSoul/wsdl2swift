@@ -3,8 +3,6 @@ require_relative 'property'
 module WSDL
   class PropertyBuilder
     def initialize(node)
-      raise ArgumentError, 'Invalid node' unless node.property_node?
-
       @node = node
     end
 

@@ -4,8 +4,6 @@ require_relative 'property_builder'
 module WSDL
   class TypeBuilder
     def initialize(node)
-      raise ArgumentError, 'Invalid node' unless node.complex_type?
-
       @node = node
     end
 
