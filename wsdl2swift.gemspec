@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency('commander', '~> 4.3')
   s.add_dependency('nokogiri', '~> 1.6', '>= 1.6.7.1')
 
+  s.add_development_dependency('aruba', '~> 0.11')
   s.add_development_dependency('cucumber', '~> 2.1')
   s.add_development_dependency('pry', '~> 0.10')
   s.add_development_dependency('rspec',     '~> 3.4')
@@ -25,6 +26,7 @@ Gem::Specification.new do |s|
 
   s.post_install_message = "Currently only supports generating swift classes."
 
+  s.bindir        = 'bin'
   s.files         = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files    = Dir["spec/**/*"]
   s.require_paths = ["lib"]
