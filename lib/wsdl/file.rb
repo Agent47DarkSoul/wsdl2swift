@@ -1,19 +1,18 @@
 require 'open-uri'
 require 'nokogiri'
 
-require_relative 'type_builder'
+require_relative 'xml/document'
+require_relative 'builders/type_builder'
 
 module WSDL
   class File
     def initialize(path)
-      @xml = Nokogiri::XML(open(path))
+      @doc = Nokogiri::XML(open(path))
     end
 
     def types
-      complex_type_nodes = @xml.xpath("//wsdl:types/xsd:schema//xsd:complexType")
-
-      complex_type_nodes.map do |node|
-        TypeBuilder.new(node).build
+      XML::Document.new(@doc).type_nodes.map do |node|
+        Builders::TypeBuilder.build(node)
       end
     end
   end
