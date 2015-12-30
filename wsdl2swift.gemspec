@@ -27,7 +27,8 @@ Gem::Specification.new do |s|
   s.post_install_message = "Currently only supports generating swift classes."
 
   s.bindir        = 'bin'
+  s.executables   << 'wsdl2swift'
   s.files         = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files    = Dir["spec/**/*"]
+  s.test_files    = Dir["spec/**/*", "features/**/*"]
   s.require_paths = ["lib"]
 end
