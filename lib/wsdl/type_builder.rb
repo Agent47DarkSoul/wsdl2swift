@@ -4,25 +4,17 @@ require_relative 'property_builder'
 module WSDL
   class TypeBuilder
     def initialize(node)
-      raise ArgumentError, 'Invalid node' unless node.name == 'complexType'
+      raise ArgumentError, 'Invalid node' unless node.complex_type?
 
       @node = node
     end
 
     def build
-      Type.new(node_name, attribute_nodes)
+      Type.new(@node.name, node_properties)
     end
 
-    private
-
-    def attribute_nodes
-      nodes = @node.xpath('xsd:sequence/xsd:element')
-      nodes.map { |node| PropertyBuilder.new(node).build }
-    end
-
-    def node_name
-      attribute = @node.attribute('name') || @node.parent.attribute('name')
-      attribute.value
+    def node_properties
+      @node.property_nodes.map { |node| PropertyBuilder.new(node).build }
     end
   end
 end
