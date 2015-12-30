@@ -16,14 +16,20 @@ command :generate do |c|
   c.example 'With URL as web url', 'wsdl2swift generate http://www.webservicex.net/globalweather.asmx?WSDL'
   c.example 'With URL as local path', 'wsdl2swift generate ./globalweather.wsdl'
 
-  c.option '--output-path', 'Path to directory where Swift class files will be generated.'
+  c.option '--output-path PATH', String, 'Path to directory where Swift class files will be generated.'
   c.action do |args, options|
     # Do something or c.when_called Wsdl2swift::Commands::Generate
-    options.default :out => nil
+    options.default output_path: Dir.pwd
 
     if args.size == 1
       # Perform operation
       say("Generating swift files...")
+      file = WSDL::File.new(args.first)
+
+      file.types.each do |type|
+        generator = SwiftGenerator.new(type)
+        generator.generate(options.output_path)
+      end
     elsif args.size < 1
       say("Failed: URL must be provided. Use --help for usage")
     else
