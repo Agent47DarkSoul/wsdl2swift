@@ -6,7 +6,7 @@ class <%= name %> {
     <%= render :property_definition, property %>
 <% end %>
 
-    init(userName: String? = "", password: String? = "", cID: String? = "") {
+    init(<%= render :function_arguments, self %>) {
         self.userName = userName
         self.password = password
         self.cID = cID

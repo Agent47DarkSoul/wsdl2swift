@@ -1,5 +1,9 @@
+require_relative 'code/helpers'
+
 module Swift
   class RenderContext
+    include Code::Helpers
+
     def initialize(type)
       @type = type
     end

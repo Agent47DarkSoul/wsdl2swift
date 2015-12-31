@@ -14,7 +14,7 @@ Feature: Simple swift class generation
               <sequence>
                 <element name="userName" type="xsd:string"/>
                 <element name="password" type="xsd:string"/>
-                <element name="CID" type="xsd:string"/>
+                <element name="CID" nillable="true" type="xsd:string"/>
               </sequence>
             </complexType>
           </schema>
@@ -36,9 +36,9 @@ Feature: Simple swift class generation
       class AuthenticateOperationBody {
           var userName : String
           var password : String
-          var cID : String
+          var cID : String?
 
-          init(userName: String? = "", password: String? = "", cID: String? = "") {
+          init(userName: String, password: String, cID: String? = "") {
               self.userName = userName
               self.password = password
               self.cID = cID
