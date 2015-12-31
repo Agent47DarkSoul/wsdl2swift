@@ -8,8 +8,14 @@ module Swift
     end
 
     def render
-      erb = ERB.new(File.open(Wsdl2swift.root + 'lib/swift/code_templates/class.erb').read)
+      erb = ERB.new(class_file_code, nil, '<>')
       erb.result(Code::Class.new(@type).bindings)
+    end
+
+    private
+
+    def class_file_code
+      File.open(Wsdl2swift.root + 'lib/swift/code_templates/class.erb').read
     end
   end
 end

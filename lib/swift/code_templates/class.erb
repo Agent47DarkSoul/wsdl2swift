@@ -3,7 +3,8 @@ import AEXML
 
 class <%= name %> {
 <% properties.each do |property| %>
-    var <%= property.name %> : <%= property.type %>?<% end %>
+    var <%= property.name %> : <%= property.type %>?
+<% end %>
 
     init(userName: String? = "", password: String? = "", cID: String? = "") {
         self.userName = userName

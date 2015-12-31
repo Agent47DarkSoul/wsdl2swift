@@ -34,7 +34,6 @@ Feature: Simple swift class generation
       import AEXML
 
       class AuthenticateOperationBody {
-
           var userName : String?
           var password : String?
           var cID : String?
