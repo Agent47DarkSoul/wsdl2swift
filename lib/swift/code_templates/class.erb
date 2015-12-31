@@ -1,0 +1,25 @@
+import Foundation
+import AEXML
+
+class AuthenticateOperationBody {
+    var userName : String?
+    var password : String?
+    var cID: String?
+
+    init(userName: String? = "", password: String? = "", cID: String? = "") {
+        self.userName = userName
+        self.password = password
+        self.cID = cID
+    }
+
+    func xmlNode() -> AEXMLELement {
+        let node = AEXMLELement("Body")
+
+        node.addChild("userName", value: self.userName!)
+        node.addChild("password", value: self.password!)
+        node.addChild("CID", value: self.cID!)
+        node.addChild(item.xmlNode())
+
+        return node
+    }
+}

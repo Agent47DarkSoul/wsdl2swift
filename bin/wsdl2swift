@@ -4,6 +4,7 @@ require 'rubygems'
 require 'commander/import'
 require 'wsdl2swift'
 require 'wsdl/version'
+require 'swift'
 
 program :version, WSDL::VERSION
 program :description, 'Swift classes generator from WSDL documents.'
@@ -22,14 +23,12 @@ command :generate do |c|
     options.default output_path: Dir.pwd
 
     if args.size == 1
-      # Perform operation
       say("Generating swift files...")
-      file = WSDL::File.new(args.first)
 
-      file.types.each do |type|
-        generator = SwiftGenerator.new(type)
-        generator.generate(options.output_path)
-      end
+      file = WSDL::File.new(args.first)
+      generator = Swift::Generator.new(options.output_path)
+
+      generator.generate(file)
     elsif args.size < 1
       say("Failed: URL must be provided. Use --help for usage")
     else

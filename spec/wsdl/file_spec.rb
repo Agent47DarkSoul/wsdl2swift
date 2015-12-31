@@ -3,7 +3,7 @@ module WSDL
     subject(:file) { described_class.new(file_path) }
 
     describe '#types' do
-      let(:file_path) { Wsdl2swift.root + '/spec/support/data/wsdl_sample_types.xml' }
+      let(:file_path) { Wsdl2swift.root + 'spec/support/data/wsdl_sample_types.xml' }
 
       subject(:types) { file.types }
 
