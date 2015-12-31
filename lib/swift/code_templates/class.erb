@@ -15,10 +15,9 @@ class <%= name %> {
     func xmlNode() -> AEXMLELement {
         let node = AEXMLELement("Body")
 
-        node.addChild("userName", value: self.userName!)
-        node.addChild("password", value: self.password!)
-        node.addChild("CID", value: self.cID!)
-        node.addChild(item.xmlNode())
+<% properties.each do |property| %>
+        node.addChild("<%= property.xml_name %>", value: self.<%= property.name %>)
+<% end %>
 
         return node
     }

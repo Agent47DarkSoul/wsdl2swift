@@ -47,10 +47,9 @@ Feature: Simple swift class generation
           func xmlNode() -> AEXMLELement {
               let node = AEXMLELement("Body")
 
-              node.addChild("userName", value: self.userName!)
-              node.addChild("password", value: self.password!)
-              node.addChild("CID", value: self.cID!)
-              node.addChild(item.xmlNode())
+              node.addChild("userName", value: self.userName)
+              node.addChild("password", value: self.password)
+              node.addChild("CID", value: self.cID)
 
               return node
           }

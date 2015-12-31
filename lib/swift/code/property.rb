@@ -19,6 +19,10 @@ module Swift
         @property.optional?
       end
 
+      def xml_name
+        @property.name
+      end
+
       private
 
       def optional_symbol
