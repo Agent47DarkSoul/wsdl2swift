@@ -3,10 +3,10 @@ import AEXML
 
 class <%= name %> {
 <% properties.each do |property| %>
-    <%= render :property_definition, property %>
+    <%= render :property_definition, property: property %>
 <% end %>
 
-    init(<%= render :function_arguments, self %>) {
+    init(<%= render :function_arguments, properties: properties %>) {
         self.userName = userName
         self.password = password
         self.cID = cID
