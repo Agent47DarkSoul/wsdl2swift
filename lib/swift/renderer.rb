@@ -1,21 +1,30 @@
 require 'erb'
 require_relative 'code/class'
+require_relative 'render_context'
 
 module Swift
   class Renderer
-    def initialize(type)
-      @type = type
+    def initialize(template_name)
+      @template = template_name
     end
 
-    def render
-      erb = ERB.new(class_file_code, nil, '<>')
-      erb.result(Code::Class.new(@type).bindings)
+    def render(type)
+      erb = ERB.new(template_contents, nil, '<>')
+      erb.result(context(type))
     end
 
     private
 
-    def class_file_code
-      File.open(Wsdl2swift.root + 'lib/swift/code_templates/class.erb').read
+    def context(type)
+      RenderContext.new(type).bindings
+    end
+
+    def template_contents
+      File.open(template_path).read
+    end
+
+    def template_path
+      Wsdl2swift.root + "lib/swift/code_templates/#{@template}.erb"
     end
   end
 end

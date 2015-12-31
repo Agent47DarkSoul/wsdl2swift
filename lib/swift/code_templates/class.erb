@@ -3,7 +3,7 @@ import AEXML
 
 class <%= name %> {
 <% properties.each do |property| %>
-    var <%= property.name %> : <%= property.type %>
+    <%= render :property_definition, property %>
 <% end %>
 
     init(userName: String? = "", password: String? = "", cID: String? = "") {

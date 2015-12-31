@@ -16,8 +16,8 @@ module Swift
     private
 
     def generate_file_for(type)
-      rendered_class = Renderer.new(type).render
-      ClassWriter.new(type.name, rendered_class).write(@output_path)
+      code = Renderer.new('class').render(Code::Class.new(type))
+      ClassWriter.new(type.name, code).write(@output_path)
     end
   end
 end
