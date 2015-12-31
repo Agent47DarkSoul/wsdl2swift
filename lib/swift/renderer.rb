@@ -1,4 +1,5 @@
 require 'erb'
+require_relative 'code/class'
 
 module Swift
   class Renderer
@@ -8,7 +9,7 @@ module Swift
 
     def render
       erb = ERB.new(File.open(Wsdl2swift.root + 'lib/swift/code_templates/class.erb').read)
-      erb.result
+      erb.result(Code::Class.new(@type).bindings)
     end
   end
 end
