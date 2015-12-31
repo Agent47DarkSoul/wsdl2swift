@@ -7,9 +7,9 @@ class <%= name %> {
 <% end %>
 
     init(<%= render :function_arguments, properties: properties %>) {
-        self.userName = userName
-        self.password = password
-        self.cID = cID
+<% properties.each do |property| %>
+        <%= render :property_initialization, property: property %>
+<% end %>
     }
 
     func xmlNode() -> AEXMLELement {
