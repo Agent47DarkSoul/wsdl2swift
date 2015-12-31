@@ -12,7 +12,13 @@ module Swift
       end
 
       def type
-        classify(@property.type)
+        "#{classify(@property.type)}#{optional_symbol}"
+      end
+
+      private
+
+      def optional_symbol
+        @property.optional? ? '?' : ''
       end
     end
   end

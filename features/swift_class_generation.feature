@@ -34,9 +34,9 @@ Feature: Simple swift class generation
       import AEXML
 
       class AuthenticateOperationBody {
-          var userName : String?
-          var password : String?
-          var cID : String?
+          var userName : String
+          var password : String
+          var cID : String
 
           init(userName: String? = "", password: String? = "", cID: String? = "") {
               self.userName = userName
