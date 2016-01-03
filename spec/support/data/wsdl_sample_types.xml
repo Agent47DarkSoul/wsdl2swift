@@ -40,14 +40,20 @@
         <element name="ErrorText" nillable="true" type="xsdns:string"/>
        </sequence>
       </complexType>
-      <complexType name="AuthenticateOperationResponseBody">
-       <sequence>
-        <element maxOccurs="1" minOccurs="0" name="sessionID" type="xsdns:string"/>
-        <element name="StatusCode" nillable="true" type="xsdns:string"/>
-        <element name="StatusText" nillable="true" type="xsdns:string"/>
-        <element maxOccurs="1" minOccurs="0" name="Error" nillable="true" type="impl:OperationError"/>
-       </sequence>
-      </complexType>
+      <element name="AuthenticateOperationResponse">
+        <complexType>
+          <sequence>
+            <element name="Header" nillable="true" type="impl:OperationRealm"/>
+            <element name="Body" nillable="true" type="impl:AuthenticateOperationResponseBody"/>
+          </sequence>
+        </complexType>
+      </element>
     </schema>
   </wsdl:types>
+  <wsdl:message name="AuthenticateOperationPORTRequest">
+    <wsdl:part element="impl:AuthenticateOperation" name="AuthenticateOperation"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticateOperationPORTResponse">
+    <wsdl:part element="impl:AuthenticateOperationResponse" name="AuthenticateOperationResponse"></wsdl:part>
+  </wsdl:message>
 </wsdl:definitions>
