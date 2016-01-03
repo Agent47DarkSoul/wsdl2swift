@@ -12,11 +12,15 @@ class <%= name %> {
 <% end %>
     }
 
-    func xmlNode() -> AEXMLELement {
-        let node = AEXMLELement("Body")
+    func xmlNode(tagName: String? = "Body") -> AEXMLELement {
+        let node = AEXMLELement(tagName)
 
 <% properties.each do |property| %>
+<% if property.inbuilt_type? %>
         node.addChild("<%= property.xml_name %>", value: self.<%= property.name %>)
+<% else %>
+        node.addChild(self.<%= property.name %>.xmlNode("<%= property.xml_name %>"))
+<% end %>
 <% end %>
 
         return node

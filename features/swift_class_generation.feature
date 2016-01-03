@@ -44,8 +44,8 @@ Feature: Simple swift class generation
               self.cID = cID
           }
 
-          func xmlNode() -> AEXMLELement {
-              let node = AEXMLELement("Body")
+          func xmlNode(tagName: String? = "Body") -> AEXMLELement {
+              let node = AEXMLELement(tagName)
 
               node.addChild("userName", value: self.userName)
               node.addChild("password", value: self.password)

@@ -23,6 +23,10 @@ module Swift
         @property.name
       end
 
+      def inbuilt_type?
+        @property.inbuilt_type?
+      end
+
       private
 
       def optional_symbol
