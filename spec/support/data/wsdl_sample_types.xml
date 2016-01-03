@@ -56,4 +56,13 @@
   <wsdl:message name="AuthenticateOperationPORTResponse">
     <wsdl:part element="impl:AuthenticateOperationResponse" name="AuthenticateOperationResponse"></wsdl:part>
   </wsdl:message>
+  <wsdl:operation name="AuthenticateOperationPORT">
+    <wsdlsoap:operation soapAction="AuthenticatOperation"/>
+    <wsdl:input name="AuthenticateOperationPORTRequest">
+      <wsdlsoap:body use="literal"/>
+    </wsdl:input>
+    <wsdl:output name="AuthenticateOperationPORTResponse">
+      <wsdlsoap:body use="literal"/>
+    </wsdl:output>
+  </wsdl:operation>
 </wsdl:definitions>

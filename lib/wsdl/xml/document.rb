@@ -1,5 +1,6 @@
 require_relative 'type_node'
 require_relative 'message_node'
+require_relative 'operation_node'
 
 module WSDL
   module XML
@@ -20,7 +21,16 @@ module WSDL
         prefix = wsdl_prefix
 
         @node.xpath(message_path).map do |node|
+          # FIX: No need to pass in prefix. It can be determined from node
           MessageNode.new(node, prefix)
+        end
+      end
+
+      def operation_nodes
+        prefix = wsdl_prefix
+
+        @node.xpath(operation_path).map do |node|
+          OperationNode.new(node)
         end
       end
 
@@ -36,6 +46,10 @@ module WSDL
 
       def message_path
         "//#{wsdl_prefix}:message"
+      end
+
+      def operation_path
+        "//#{wsdl_prefix}:operation"
       end
 
       def wsdl_prefix

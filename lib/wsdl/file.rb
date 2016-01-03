@@ -4,6 +4,7 @@ require 'nokogiri'
 require_relative 'xml/document'
 require_relative 'builders/type_builder'
 require_relative 'builders/message_builder'
+require_relative 'builders/operation_builder'
 
 module WSDL
   class File
@@ -27,6 +28,14 @@ module WSDL
 
     def message(name)
       messages.detect { |m| m.name == name }
+    end
+
+    def operations
+      wsdl_messages = messages
+
+      xml_document.operation_nodes.map do |node|
+        Builders::OperationBuilder.build(node, wsdl_messages)
+      end
     end
 
     private

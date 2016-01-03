@@ -35,5 +35,26 @@ module WSDL
         expect(message.implementation.name).to eq('AuthenticateOperation')
       end
     end
+
+    describe '#operations' do
+      subject(:operations) { file.operations }
+
+      it 'returns all operations' do
+        operation_names = operations.map(&:name)
+        expect(operation_names).to match_array(['AuthenticateOperationPORT'])
+      end
+
+      it 'returns operations with request message' do
+        operation = operations.detect { |o| o.name == 'AuthenticateOperationPORT' }
+
+        expect(operation.request_message.name).to eq('AuthenticateOperationPORTRequest')
+      end
+
+      it 'returns operations with response message' do
+        operation = operations.detect { |o| o.name == 'AuthenticateOperationPORT' }
+
+        expect(operation.response_message.name).to eq('AuthenticateOperationPORTResponse')
+      end
+    end
   end
 end
