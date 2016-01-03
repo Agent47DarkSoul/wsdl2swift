@@ -49,7 +49,7 @@ module WSDL
       end
 
       def operation_path
-        "//#{wsdl_prefix}:operation"
+        "//#{wsdl_prefix}:binding/#{wsdl_prefix}:operation"
       end
 
       def wsdl_prefix
