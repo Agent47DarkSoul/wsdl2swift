@@ -13,5 +13,9 @@ module WSDL
     def multivalued?
       max_occurance == 'unbounded'
     end
+
+    def inbuilt_type?
+      ['String', 'Double', 'Integer', 'Boolean', 'DateTime'].include?(tokenized_type)
+    end
   end
 end
